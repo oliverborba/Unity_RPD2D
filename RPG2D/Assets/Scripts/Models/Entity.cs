@@ -29,4 +29,12 @@ public class Entity
     public int defense = 1;
     public float speed = 2f;
 
+    [Header("Combar")]
+    public float attacDistance = 0.5f;
+    public float attackTimer = 1;
+    public float cooldown = 2;
+    public bool inCombat = false;
+    public GameObject target;
+    public bool combatCourotine = false;
+    public bool dead = false;
 }
