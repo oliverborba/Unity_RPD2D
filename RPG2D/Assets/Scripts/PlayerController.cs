@@ -10,17 +10,14 @@ public class PlayerController : MonoBehaviour
     float input_y = 0;
     public float speed = 2.5f;
     bool isWalking = false;
-
     Rigidbody2D rb2D;
     Vector2 movement = Vector2.zero;
-
     // Start is called before the first frame update
     void Start()
     {
         isWalking = false;
         rb2D = GetComponent<Rigidbody2D>();
     }
-
     // Update is called once per frame
     void Update()
     {
