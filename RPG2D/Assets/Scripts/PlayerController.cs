@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class PlauerController : MonoBehaviour
 {
-
     public Animator playerAnimator;
     float input_x = 0;
     float input_y = 0;
     public float speed = 2.5f;
     bool isWalking = false;
-
-
 
     // Start is called before the first frame update
     void Start()
