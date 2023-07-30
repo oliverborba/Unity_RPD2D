@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public bool regenHPEnabled = true;
     public float regenHPTime = 5f;
     public int regenHPValue = 5;
-
     public bool regenMPEnabled = true;
     public float regenMPTime = 10f;
     public int regenMPValue = 5;
@@ -20,7 +19,6 @@ public class Player : MonoBehaviour
     public GameManager manager;
 
     [Header("Player UI")]
-    // Start is called before the first frame update
     public Slider health;
     public Slider mana;
     public Slider stamina;
@@ -38,9 +36,6 @@ public class Player : MonoBehaviour
         entity.maxMana = manager.CalculateMana(entity);
         entity.maxStamina = manager.CalculateStamina(entity);
 
-        int dmg = manager.CalculateDamage(entity, 10);
-        int def = manager.CalculateDefense(entity, 5);
-
         entity.currentHealth = entity.maxHealth;
         entity.currentMana = entity.maxMana;
         entity.currentStamina = entity.maxStamina;
@@ -56,7 +51,7 @@ public class Player : MonoBehaviour
 
         exp.value = 0;
 
-        //Iniciar o RegenHealth
+        // iniciar o regenhealth
         StartCoroutine(RegenHealth());
         StartCoroutine(RegenMana());
     }
@@ -66,23 +61,17 @@ public class Player : MonoBehaviour
         health.value = entity.currentHealth;
         mana.value = entity.currentMana;
         stamina.value = entity.currentStamina;
-
-        // teste
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            entity.currentHealth -= 10;
-            entity.currentMana -= 5;
-        }
     }
+
     IEnumerator RegenHealth()
     {
-        while (true)
+        while (true) // loop infinito
         {
             if (regenHPEnabled)
             {
                 if (entity.currentHealth < entity.maxHealth)
                 {
-                    Debug.LogFormat("Recuperando HP do Jogador");
+                    Debug.LogFormat("Recuperando HP do jogador");
                     entity.currentHealth += regenHPValue;
                     yield return new WaitForSeconds(regenHPTime);
                 }
@@ -100,13 +89,13 @@ public class Player : MonoBehaviour
 
     IEnumerator RegenMana()
     {
-        while (true)
+        while (true) // loop infinito
         {
-            if (regenMPEnabled)
+            if (regenHPEnabled)
             {
                 if (entity.currentMana < entity.maxMana)
                 {
-                    Debug.LogFormat("Recuperando MP do Jogador");
+                    Debug.LogFormat("Recuperando MP do jogador");
                     entity.currentMana += regenMPValue;
                     yield return new WaitForSeconds(regenMPTime);
                 }
@@ -121,4 +110,5 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 }
