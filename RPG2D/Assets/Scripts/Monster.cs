@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 public class Monster : MonoBehaviour
 {
     [Header("Controller")]
-    public Entity entity = new Entity();
+    public Entity entity;
     public GameManager manager;
 
     [Header("Patrol")]
-    public Transform[] waypointList;
+    public List<Transform> waypointList;
     public float arrivalDistance = 0.5f;
     public float waitTime = 5;
+    public int waypointID;
 
     // Privates
     Transform targetWaypoint;
@@ -30,6 +33,10 @@ public class Monster : MonoBehaviour
     public GameObject prefab;
     public bool respawn = true;
     public float respawnTime = 10f;
+
+    [Header("UI")]
+    public Slider healthSlider;
+
 
     Rigidbody2D rb2D;
     Animator animator;
@@ -48,8 +55,20 @@ public class Monster : MonoBehaviour
         entity.currentMana = entity.maxMana;
         entity.currentStamina = entity.maxStamina;
 
+        healthSlider.maxValue = entity.maxHealth;
+        healthSlider.value = healthSlider.maxValue;
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Waypoint"))
+        {
+            int ID = obj.GetComponent<WaypointID>().ID;
+            if (ID == waypointID)
+            {
+                waypointList.AddRange(obj.transform);
+            }
+        }
+
         currentWaitTime = waitTime;
-        if (waypointList.Length > 0)
+        if (waypointList.Count > 0)
         {
             targetWaypoint = waypointList[currentWaypoint];
             lastDistanceToTarget = Vector2.Distance(transform.position, targetWaypoint.position);
@@ -67,9 +86,11 @@ public class Monster : MonoBehaviour
             Die();
         }
 
+        healthSlider.value = entity.currentHealth;
+
         if (!entity.inCombat)
         {
-            if (waypointList.Length > 0)
+            if (waypointList.Count > 0)
             {
                 Patrol();
             }
@@ -139,7 +160,7 @@ public class Monster : MonoBehaviour
             {
                 currentWaypoint++;
 
-                if (currentWaypoint >= waypointList.Length)
+                if (currentWaypoint >= waypointList.Count)
                     currentWaypoint = 0;
 
                 targetWaypoint = waypointList[currentWaypoint];
@@ -219,6 +240,7 @@ public class Monster : MonoBehaviour
         GameObject newMonster = Instantiate(prefab, transform.position, transform.rotation, null);
         newMonster.name = prefab.name;
         newMonster.GetComponent<Monster>().entity.dead = false;
+        newMonster.GetComponent<Monster>().entity.combatCoroutine = false;
 
         Destroy(this.gameObject);
     }
