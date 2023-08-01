@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
-    public Player player;
+    [HideInInspector] public Player player;
     public Animator playerAnimator;
     float input_x = 0;
     float input_y = 0;
@@ -35,11 +35,74 @@ public class PlayerController : MonoBehaviour
         }
         playerAnimator.SetBool("isWalking", isWalking);
 
-        if (Input.GetButtonDown("Fire1"))
-            playerAnimator.SetTrigger("attack");
+
+        if (player.entity.attackTimer < 0)
+            player.entity.attackTimer = 0;
+        else
+            player.entity.attackTimer -= Time.deltaTime;
+
+        if (player.entity.attackTimer == 0 && !isWalking)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                playerAnimator.SetTrigger("attack");
+                player.entity.attackTimer = player.entity.cooldown;
+
+                Attack();
+
+            }
+        }
     }
+
     private void FixedUpdate()
     {
         rb2D.MovePosition(rb2D.position + movement * player.entity.speed * Time.deltaTime);
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.transform.tag == "Enemy")
+        {
+            player.entity.target = collider.transform.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.transform.tag == "Enemy")
+        {
+            player.entity.target = null;
+        }
+    }
+    void Attack()
+    {
+        if (player.entity.target == null)
+            return;
+
+        Monster monster = player.entity.target.GetComponent<Monster>();
+
+        if (monster.entity.dead)
+        {
+            player.entity.target = null;
+            return;
+        }
+        float distance = Vector2.Distance(transform.position, player.entity.target.transform.position);
+
+        if (distance <= player.entity.attackDistance)
+        {
+            int dmg = player.manager.CalculateDamage(player.entity, player.entity.damage);
+            int enemyDef = player.manager.CalculateDefense(monster.entity, monster.entity.defense);
+
+            int result = dmg - enemyDef;
+
+            if (result < 0)
+                result = 0;
+
+            Debug.Log("Player dmg: " + result.ToString());
+
+            monster.entity.currentHealth -= result;
+
+            monster.entity.target = this.gameObject;
+
+        }
     }
 }
