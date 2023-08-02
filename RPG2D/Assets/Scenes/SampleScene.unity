@@ -19886,7 +19886,7 @@ GameObject:
   - component: {fileID: 628991008}
   - component: {fileID: 628991007}
   m_Layer: 5
-  m_Name: Pointstxt (1)
+  m_Name: PointsValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27540,7 +27540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 179.12033, y: -90}
+  m_AnchoredPosition: {x: 179.12033, y: -91}
   m_SizeDelta: {x: 360.0408, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2033866303
@@ -28997,9 +28997,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1433630452}
     - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: intTxt
+      value: 
+      objectReference: {fileID: 1339931060}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
       propertyPath: prefab
       value: 
       objectReference: {fileID: 1850546719}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: resTxt
+      value: 
+      objectReference: {fileID: 187217145}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: strTxt
+      value: 
+      objectReference: {fileID: 1484412801}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: wilTxt
+      value: 
+      objectReference: {fileID: 473154291}
     - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
       propertyPath: expBase
       value: 150
@@ -29029,7 +29045,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1559280876}
     - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: levelUpFX
+      value: 
+      objectReference: {fileID: 8130206895117104094, guid: c0bdc261711335e459eaf7656b0d3c13, type: 3}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: pointsTxt
+      value: 
+      objectReference: {fileID: 628991008}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
       propertyPath: LevelUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 700363559a4bd1d4699bbf31d405db8a, type: 3}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: levelUpSound
       value: 
       objectReference: {fileID: 8300000, guid: 700363559a4bd1d4699bbf31d405db8a, type: 3}
     - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
@@ -29040,6 +29068,42 @@ PrefabInstance:
       propertyPath: entity.defense
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: intNegativeBtn
+      value: 
+      objectReference: {fileID: 758320617}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: intPositiveBtn
+      value: 
+      objectReference: {fileID: 1800645942}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: resNegativeBtn
+      value: 
+      objectReference: {fileID: 765371022}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: resPositiveBtn
+      value: 
+      objectReference: {fileID: 878079860}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: strNegativeBtn
+      value: 
+      objectReference: {fileID: 1803201057}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: strPositiveBtn
+      value: 
+      objectReference: {fileID: 265907483}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: wilNegativeBtn
+      value: 
+      objectReference: {fileID: 347149116}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: wilPositiveBtn
+      value: 
+      objectReference: {fileID: 268965910}
+    - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: attributesPanel
+      value: 
+      objectReference: {fileID: 1173438489}
     - target: {fileID: 1562783220762783961, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
       propertyPath: entity.strength
       value: 3
@@ -29100,6 +29164,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8455761351211582570, guid: c2b1a5fd25e090a4782d8c2abfd18ee4, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 700363559a4bd1d4699bbf31d405db8a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
